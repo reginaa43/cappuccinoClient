@@ -1,0 +1,10 @@
+<ul>
+  <li>
+      <a data-ember-action="352">
+        {{menu.carrera}}
+        <li *ngIf="menu.carrera.show">
+          <a *ngFor="let nivel of manu.carrera.niveles" href="#">{{nivel}}</a>
+        </li>    
+      </a>
+  </li>
+</ul>
