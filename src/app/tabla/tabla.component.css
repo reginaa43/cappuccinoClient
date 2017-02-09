@@ -2,6 +2,11 @@
     font-size: 14px;
 }
 
-.md-list-item{
-    height: 30px;
+.tabla{
+    font-size: 14px;
+    border: solid;
+}
+
+table, th, td {
+   border: 1px solid black;
 }
