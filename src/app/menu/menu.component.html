@@ -1,10 +1,9 @@
-<ul>
-  <li>
-      <a data-ember-action="352">
-        {{menu.carrera}}
-        <li *ngIf="menu.carrera.show">
-          <a *ngFor="let nivel of manu.carrera.niveles" href="#">{{nivel}}</a>
-        </li>    
-      </a>
+<ul *ngIf="selectCarrier">
+  <li *ngFor="let carrera of carreras">
+      <!--<a data-ember-action="352">-->
+        <!--<li *ngIf="menu.carrera.show">-->
+          <a (click)="selected">{{carrera.name.substring(16,carrera.name.length)}}</a>
+        <!--</li>    -->
+      <!--</a>-->
   </li>
 </ul>

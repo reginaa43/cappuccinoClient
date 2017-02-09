@@ -7,11 +7,11 @@ import {Menu} from '../models/menu';
 // import { BLOGERS } from '../model/mock-menu';
 
 @Injectable()
-export class BlogerService{
-	url = 'http://localhost:3000/bloggers';
+export class MenuService{
+	url = 'http://localhost:3000/menu';
 	constructor(private http: Http){}
 
-	getBlogers(): Observable<Menu>{
+	getMenu(): Observable<Menu[]>{
 		return this.http.get(this.url)
 		.map((response: Response) => response.json()); 
 		// return Promise.reject('Promise Fail');

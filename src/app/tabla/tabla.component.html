@@ -1,3 +1,42 @@
-<p>
-  tabla works!
-</p>
+<md-list dense *ngIf="selectCarrier">
+  <md-list-item *ngFor="let carrera of carreras">
+     <a (click)="selected(carrera.code)"> {{carrera.name.substring(16,carrera.name.length)}}</a>
+  </md-list-item>
+</md-list>
+
+<a (click)="showMatter = !showMatter">{{level.level}}</a>
+<div *ngIf="!selectCarrier" class="row">
+  <ul *ngIf="showMatter">  
+    <div class="col s6">
+    <h6>Materias:</h6>
+      <li *ngFor="let matter of level.subjects">
+        <a (click)="showGroups(matter)">{{matter.name}}</a>  
+      </li>
+    </div>
+
+    <div class="col s6" *ngIf="showgroups">
+      <h6>Grupos:</h6>
+      <li *ngFor="let schedule of groups">
+        <a (click)="addSchedule(schedule.schedule,schedule)">{{schedule.teacher | lowercase}} - {{schedule.id}}</a>
+      </li>    
+    </div>
+  </ul>
+</div>
+
+<table class="centered striped">
+  <thead>
+    <th>-</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miercoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sabado</th>
+  </thead>
+  <tbody class="schedule">
+    <tr *ngFor="let schedule of tabla.schedule">
+      <td>{{schedule.hour}}</td>
+      <td *ngFor="let item of schedule.array">{{item}}</td>
+    </tr>
+  </tbody>
+</table>
