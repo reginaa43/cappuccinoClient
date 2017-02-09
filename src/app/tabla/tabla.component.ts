@@ -40,12 +40,8 @@ export class TablaComponent implements OnInit {
   }
 
   selected(code: string): void{
-    console.log(code);
+    // console.log(code);
     this.selectCarrier = false;
-  }
-
-  InsetTest(day:number, hour:number, element:string ):void{
-     this.tabla.setSchedule(day,hour,"materia");
   }
 
   showGroups(matter: Matter){
@@ -55,11 +51,11 @@ export class TablaComponent implements OnInit {
   }
 
   addSchedule(group: Schedule[], name:any){
-    console.log(name);
     let schedule: Schedule = new Schedule();
     for(let item of group){
-      this.tabla.setSchedule(schedule.getDay(item.day),
-      schedule.getSart(item.start),this.selectedMatter.name+"-"+item.room);
+      let start = schedule.getSart(item.start);
+      let day = schedule.getDay(item.day);
+      this.tabla.setSchedule(day,start,this.selectedMatter.name+"-"+item.room);  
     }
   }
 }

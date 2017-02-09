@@ -9,7 +9,7 @@ export class Schedule {
     }
 
     getDay(day: string): number{
-        let resp: number = -1;
+        let resp: number=-1;
         switch (day) {
             case "LU":
                 resp = 0;
@@ -28,9 +28,6 @@ export class Schedule {
                 break;
             case "SA":
                 resp = 5;
-                break;
-            default:
-            resp = -1;
                 break;
         }
         return resp;
