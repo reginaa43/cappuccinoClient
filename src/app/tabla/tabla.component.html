@@ -23,7 +23,11 @@
   </ul>
 </div>
 
-<table class="centered striped tabla bordered">
+<div *ngIf="myMatters.length>0">
+  <p *ngFor="let item of myMatters">{{item.nameMatter}} - </p>
+</div>
+
+<table *ngIf="!selectCarrier" class="centered striped tabla bordered">
   <thead>
     <th>-</th>
     <th>Lunes</th>

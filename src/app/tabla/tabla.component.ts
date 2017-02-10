@@ -22,7 +22,8 @@ export class TablaComponent implements OnInit {
   showMatter: boolean = false;
   showgroups: boolean = false;
   carreras :Menu[];
-  selectCarrier: boolean = true;
+  selectCarrier: boolean = false;
+  myMatters: Array<Matter> = new Array<Matter>();
 
   constructor(private servicioMenu: MenuService, private service: ScheduleService) {
     this.level = new Level();
@@ -50,12 +51,42 @@ export class TablaComponent implements OnInit {
     this.groups = matter.groups;
   }
 
-  addSchedule(group: Schedule[], name:any){
+  addSchedule(group: Schedule[], matter:Matter){
+    if(this.existMatter(matter)){
+      console.log("ya existe la materia en nuestra lista");
+      this.removeFromTable(group);
+      this.myMatters = this.myMatters.filter((item)=>{return item.id!=matter.id});
+    }
+    else{
+      matter.nameMatter = this.selectedMatter.name;
+      this.myMatters.push(matter);
+      this.addToTable(group);
+    }
+      console.log(this.myMatters);
+  }
+
+  existMatter(matter: Matter): boolean{
+    let el:Matter = this.myMatters.find((item: Matter)=>{
+      return matter.id == item.id;
+    });
+    return el != undefined;
+  }
+
+  addToTable(group: Schedule[]){
     let schedule: Schedule = new Schedule();
     for(let item of group){
       let start = schedule.getSart(item.start);
       let day = schedule.getDay(item.day);
       this.tabla.setSchedule(day,start,this.selectedMatter.name+"-"+item.room);  
+    }
+  }
+
+  removeFromTable(group: Schedule[]){
+    let schedule: Schedule = new Schedule();
+    for(let item of group){
+      let start = schedule.getSart(item.start);
+      let day = schedule.getDay(item.day);
+      this.tabla.deleteSchedule(day,start,this.selectedMatter.name+"-"+item.room);  
     }
   }
 }

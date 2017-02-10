@@ -4,6 +4,7 @@ export class Matter {
     name: string;
     groups: Schedule[];
     showShedule: boolean = false;
+    nameMatter: string;
     constructor(){
 
     }

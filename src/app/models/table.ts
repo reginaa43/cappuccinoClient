@@ -31,9 +31,14 @@ export class Table {
     this.hour2015]
   }
 
+  deleteSchedule(day: number, hour: number,materia: string):void{
+    let el: string = this.schedule[hour].array[day]; 
+    this.schedule[hour].array[day] = "";
+  }
+
   setSchedule(day: number, hour: number,materia: string):void{
     let el: string = this.schedule[hour].array[day]; 
-    if(el == undefined)  {
+    if(el == undefined || el == "")  {
         this.schedule[hour].array[day] = materia;
     }
     else{
