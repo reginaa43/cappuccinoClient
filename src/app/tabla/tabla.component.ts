@@ -13,8 +13,9 @@ import {MenuService} from '../services/menu.services';
   styleUrls: ['./tabla.component.css'],
   providers:[ScheduleService, MenuService]
 })
-
+/* remember in the filtering are use a code for id to do this selection */
 export class TablaComponent implements OnInit {
+  levels: any[];
   tabla: Table;
   level: Level;
   selectedMatter: Matter;
@@ -31,8 +32,8 @@ export class TablaComponent implements OnInit {
       (resp: Menu[])=>{ this.carreras = resp; }
     );
 
-    this.service.getSchedule("/").subscribe((data: any)=>{
-      this.level = data;
+    this.service.getLevels().subscribe((data: any)=>{
+      this.levels = data;
     });
    }
 
@@ -41,7 +42,6 @@ export class TablaComponent implements OnInit {
   }
 
   selected(code: string): void{
-    // console.log(code);
     this.selectCarrier = false;
   }
 
@@ -55,7 +55,7 @@ export class TablaComponent implements OnInit {
     if(this.existMatter(matter)){
       console.log("ya existe la materia en nuestra lista");
       this.removeFromTable(group);
-      this.myMatters = this.myMatters.filter((item)=>{return item.id!=matter.id});
+      this.myMatters = this.myMatters.filter((item)=>{return item.code!=matter.code});
     }
     else{
       matter.nameMatter = this.selectedMatter.name;
@@ -67,7 +67,7 @@ export class TablaComponent implements OnInit {
 
   existMatter(matter: Matter): boolean{
     let el:Matter = this.myMatters.find((item: Matter)=>{
-      return matter.id == item.id;
+      return matter.code == item.code;
     });
     return el != undefined;
   }
@@ -79,6 +79,13 @@ export class TablaComponent implements OnInit {
       let day = schedule.getDay(item.day);
       this.tabla.setSchedule(day,start,this.selectedMatter.name+"-"+item.room);  
     }
+  }
+
+  selectedLevel(level :string){
+    this.showMatter = true;
+    this.service.getSchedule(level).subscribe((data: any)=>{
+      this.level = data;
+    });
   }
 
   removeFromTable(group: Schedule[]){

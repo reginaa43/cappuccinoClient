@@ -8,7 +8,7 @@ import {Level} from '../models/level';
 
 @Injectable()
 export class ScheduleService{
-	url = 'http://localhost:3000/level';
+	url = 'http://localhost:3000';
 	constructor(private http: Http){}
 
 	getSchedule(grado: string): Observable<any>{
@@ -16,5 +16,10 @@ export class ScheduleService{
 		.map((response: Response) => response.json()); 
 		// return Promise.reject('Promise Fail');
 		//json-server --watch db.json to serve a service json
+	}
+
+	getLevels(): Observable<any[]>{
+		return this.http.get(`${this.url}/niveles`)
+		.map((response: Response) => response.json()); 
 	}	
 }
