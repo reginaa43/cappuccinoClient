@@ -16,7 +16,8 @@
     <div *ngIf="!selectCarrier">
       <ul *ngIf="showMatter" class="collection with-header">
           <li class="collection-header"><h5>Materias: </h5></li>
-            <a *ngFor="let matter of level.subjects" (click)="showGroups(matter)" class="collection-item">
+            <a *ngFor="let matter of level.subjects" (click)="showGroups(matter)" 
+            [ngClass]="{'active': matter.showShedule }" class="collection-item">
               {{matter.name}}
             </a>
       </ul>

@@ -18,7 +18,7 @@ export class TablaComponent implements OnInit {
   levels: any[];
   tabla: Table;
   level: Level;
-  selectedMatter: Matter;
+  selectedMatter: Matter = null;
   groups: Schedule[];
   showMatter: boolean = false;
   showgroups: boolean = false;
@@ -46,9 +46,13 @@ export class TablaComponent implements OnInit {
   }
 
   showGroups(matter: Matter){
+    if(this.selectedMatter != null){
+      this.selectedMatter.showShedule = false;
+    }
     this.selectedMatter = matter;
     this.showgroups = true;
     this.groups = matter.groups;
+    this.selectedMatter.showShedule = true; 
   }
 
   addSchedule(group: Schedule[], matter:Matter){
