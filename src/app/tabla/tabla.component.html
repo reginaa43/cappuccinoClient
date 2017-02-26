@@ -25,7 +25,9 @@
       <div *ngIf="showgroups">
             <h6>Grupos:</h6>
             <li *ngFor="let schedule of groups">
-              <a (click)="addSchedule(schedule.schedule,schedule)">{{schedule.teacher | lowercase}} - {{schedule.id}}</a>
+              <a (click)="addSchedule(schedule.schedule,schedule)"
+              >
+              {{schedule.teacher | lowercase}} - {{schedule.code}}</a>
             </li>    
       </div>
     </div>
@@ -50,10 +52,13 @@
     <tbody class="schedule">
       <tr *ngFor="let schedule of tabla.schedule">
         <td class="brown darken-2 white-text">{{schedule.hour}}</td>
-        <td *ngFor="let item of schedule.array">{{item}}</td>
+        <td class="white-text" *ngFor="let item of schedule.array"
+        [ngClass]="[item.color,'darken-4']" >{{item.materia}}</td>
       </tr>
     </tbody>
   </table>
 
   </div>
 </div>
+
+<!--[ngClass]="{'blue': item.color != ''}"-->

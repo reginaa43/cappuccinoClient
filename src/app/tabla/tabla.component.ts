@@ -25,6 +25,8 @@ export class TablaComponent implements OnInit {
   carreras :Menu[];
   selectCarrier: boolean = false;
   myMatters: Array<Matter> = new Array<Matter>();
+  colors :string[] = ['pink','purple','indigo','blue','amber','lime','teal',
+  'cyan','geen','brown','grey'];
 
   constructor(private servicioMenu: MenuService, private service: ScheduleService) {
     this.level = new Level();
@@ -78,10 +80,13 @@ export class TablaComponent implements OnInit {
 
   addToTable(group: Schedule[]){
     let schedule: Schedule = new Schedule();
+    let colorRandom: string = this.colors[~~(Math.random()*this.colors.length-1)];
+    console.log(colorRandom);
+    console.log(Math.random()*this.colors.length);
     for(let item of group){
       let start = schedule.getSart(item.start);
       let day = schedule.getDay(item.day);
-      this.tabla.setSchedule(day,start,this.selectedMatter.name+"-"+item.room);  
+      this.tabla.setSchedule(day,start,this.selectedMatter.name+"-"+item.room,colorRandom);  
     }
   }
 

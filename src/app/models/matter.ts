@@ -4,9 +4,10 @@ export class Matter {
     code: string;
     name: string;
     groups: Schedule[];
+    color:string;
     showShedule: boolean = false;
     nameMatter: string;
     constructor(){
-
+        this.color = "red";
     }
 }

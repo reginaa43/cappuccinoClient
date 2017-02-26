@@ -4,8 +4,9 @@ export class Schedule {
     end: string;
     teacher: string;
     room: string;
+    selected: boolean;
     constructor(){
-
+        this.selected = false;
     }
 
     getDay(day: string): number{
